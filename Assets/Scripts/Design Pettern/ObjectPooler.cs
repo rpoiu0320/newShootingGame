@@ -52,11 +52,10 @@ namespace DesingPattern
         {
             objectPool.Push(pooled);
         }
-    }
 
-    public class PooledObject
-    {
-        // 생성&삭제가 빈번한 클래스
+        public class PooledObject
+        {
+            // 생성&삭제가 빈번한 클래스
+        }
     }
-
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class ObjectPoolTester : MonoBehaviour
 {
     private ObjectPool objectPool;
-    private Poolable poolable;
 
     private void Awake()
     {
@@ -14,10 +13,10 @@ public class ObjectPoolTester : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            poolable = objectPool.GetPool();
-            poolable.transform.position = new Vector3(-10f, -10f, Random.Range(-10f, 10f));
+            Poolable poolable = objectPool.GetPool();
+            poolable.transform.position = new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f));
         }
     }
 }
