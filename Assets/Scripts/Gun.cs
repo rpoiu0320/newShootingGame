@@ -28,7 +28,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    /*IEnumerator TrailRoutine(Vector3 startPoint, Vector3 endPoint)
+    IEnumerator TrailRoutine(Vector3 startPoint, Vector3 endPoint)
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
@@ -50,5 +50,5 @@ public class Gun : MonoBehaviour
         {
             TrailRenderer.
         }
-    }*/
+    }
 }
