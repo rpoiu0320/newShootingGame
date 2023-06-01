@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7423640964222497059}
   - component: {fileID: 7434417533151687561}
   - component: {fileID: 7464950437817224105}
-  - component: {fileID: 2396153857873611779}
+  - component: {fileID: -4139044886135565755}
   m_Layer: 0
   m_Name: Traget
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43004275098325928, guid: b167d1e295259224194b5d15dcc007da, type: 2}
---- !u!114 &2396153857873611779
+--- !u!114 &-4139044886135565755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,6 +108,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7456289406224206797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0698d1f0d9e57cd408943b77efdfdd91, type: 3}
+  m_Script: {fileID: 11500000, guid: f9766df848c5a8d468a4723bed22088b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
