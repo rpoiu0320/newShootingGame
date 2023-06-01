@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem bulletEffect;
+    [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] float maxDistance;
     [SerializeField] int damage;
 
@@ -17,29 +17,30 @@ public class Gun : MonoBehaviour
 
     public /*virtual*/ void Fire()
     {
-        Debug.Log("총 발사");
         RaycastHit hit;
+        Debug.Log("hit");
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
         {
-        
-            Instantiate(muzzleEffect, hit.transform.position, Quaternion.LookRotation(hit.normal));
             IHittable hittable = hit.transform.GetComponent<IHittable>();
+            ParticleSystem effect = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal)); // LookRotation은 벡터를 넣어주면 그 방향으로 바라보게 해줌, hit.nomal은 충돌 지점에서 충돌체의 면에 수직으로
+            effect.transform.parent = hit.transform;
+            Destroy(effect.gameObject, 3f);
             hittable?.Hit(hit, damage);
         }
     }
 
-    IEnumerator TrailRoutine(Vector3 startPoint, Vector3 endPoint)
+    /*IEnumerator TrailRoutine(Vector3 startPoint, Vector3 endPoint)
     {
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
         {
-            TrailRenderer trail = Instantiate(bulletEffect, hit.point, Quaternion.LookRotation(hit.normal), true);
+            TrailRenderer trail = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal), true);
             IHittable hittable = hit.transform.GetComponent<IHittable>();
             hittable?.Hit(hit, damage);
         }
         else
         {
-            TrailRenderer trail = Instantiate(bulletEffect, hit.point, Quaternion.LookRotation(hit.normal), true);
+            TrailRenderer trail = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal), true);
         }
         
 
@@ -48,7 +49,7 @@ public class Gun : MonoBehaviour
         float time = 0;
         while (time < 1)
         {
-            TrailRenderer.
+            //TrailRenderer.
         }
-    }
+    }*/
 }
