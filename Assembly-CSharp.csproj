@@ -60,7 +60,7 @@
     <Compile Include="Assets\Imports\UnityTechnologies\ParticlePack\Shared\Scripts\ProximityActivate.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
     <Compile Include="Assets\Scripts\PlayerShooter.cs" />
-    <Compile Include="Assets\Scripts\Design Pettern\Object Full.cs" />
+    <Compile Include="Assets\Scripts\Design Pettern\ObjectPooler.cs" />
     <Compile Include="Assets\Imports\UnityTechnologies\ParticlePack\Shared\Ramps\Runtime\RampAsset.cs" />
     <Compile Include="Assets\Scripts\IHittable.cs" />
     <Compile Include="Assets\Imports\UnityTechnologies\ParticlePack\Shared\Scripts\SimpleCameraController.cs" />
@@ -74,6 +74,9 @@
     <Compile Include="Assets\Scripts\PlayerMover.cs" />
     <Compile Include="Assets\Imports\UnityTechnologies\ParticlePack\EffectExamples\Misc Effects\Scripts\SpawnEffect.cs" />
     <Compile Include="Assets\Scripts\WeaponHolder.cs" />
+    <Compile Include="Assets\ObjectPool\Poolable.cs" />
+    <Compile Include="Assets\ObjectPool\ObjectPool.cs" />
+    <Compile Include="Assets\ObjectPool\ObjectPoolTester.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Imports\UnityTechnologies\ParticlePack\TextMesh Pro\Shaders\TMPro.cginc" />
