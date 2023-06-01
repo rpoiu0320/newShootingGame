@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private TrailRenderer bulletTrail;
     [SerializeField] private float maxDistance;
+    [SerializeField] private float bulletSpeed;
     [SerializeField] private int damage;
 
     private ParticleSystem muzzleEffect;
@@ -21,7 +22,7 @@ public class Gun : MonoBehaviour
         muzzleEffect.Play();
 
         RaycastHit hit;
-        Debug.Log("hit");
+
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
         {
             IHittable hittable = hit.transform.GetComponent<IHittable>();
@@ -29,34 +30,30 @@ public class Gun : MonoBehaviour
             effect.transform.parent = hit.transform;
             Destroy(effect.gameObject, 3f);
 
-            TrailRenderer trail = Instantiate(bulletTrail, muzzleEffect.transform.position, Quaternion.identity);
-            //                                  생성할거,       시작 위치,                      회전(identity 회전 없이)
+            StartCoroutine(TrailRoutine(muzzleEffect.transform.position, hit.point));
 
             hittable?.Hit(hit, damage);
+        }
+        else
+        {
+            StartCoroutine(TrailRoutine(muzzleEffect.transform.position, Camera.main.transform.forward * maxDistance));
         }
     }
 
     IEnumerator TrailRoutine(Vector3 startPoint, Vector3 endPoint)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
-        {
-            TrailRenderer trail = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal), true);
-            IHittable hittable = hit.transform.GetComponent<IHittable>();
-            hittable?.Hit(hit, damage);
-        }
-        else
-        {
-            TrailRenderer trail = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal), true);
-        }
-        
+        TrailRenderer trail = Instantiate(bulletTrail, muzzleEffect.transform.position, Quaternion.identity);
+        //                                 생성할거,       시작 위치,                      회전(identity 회전 없이)
+        float totalTime = Vector2.Distance(startPoint, endPoint) / bulletSpeed;
+        float rate = 0;
 
-        float rate = Vector2.Distance(startPoint, endPoint) / maxDistance;
-
-        float time = 0;
-        while (time < 1)
+        while (rate < 1)
         {
-            //TrailRenderer.
+            trail.transform.position = Vector3.Lerp(startPoint, endPoint, rate); ;
+            rate += Time.deltaTime / totalTime;
+
+            yield return null;
         }
+        Destroy(trail);
     }
 }
