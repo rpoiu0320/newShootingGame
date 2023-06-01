@@ -21,6 +21,7 @@ public class Gun : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
         {
+            
             Instantiate(muzzleEffect, hit.transform.position, Quaternion.LookRotation(hit.normal));
             IHittable hittable = hit.transform.GetComponent<IHittable>();
             hittable?.Hit(hit, damage);
