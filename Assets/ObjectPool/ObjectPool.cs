@@ -23,6 +23,7 @@ public class ObjectPool : MonoBehaviour
             Poolable poolable = Instantiate(poolablePrefab);
             poolable.gameObject.SetActive(false);
             poolable.transform.SetParent(transform);
+            poolable.Pool = this;
             objectPool.Push(poolable);
         }
     }
